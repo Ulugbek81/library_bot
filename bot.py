@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # vim:fileencoding=utf-8
 
+from flask import Flask, request
+import os
 import telebot
 import config
 import gspread
@@ -74,6 +76,8 @@ sheet1=Spreadsheet()
 
 bot = telebot.TeleBot(config.token)
 
+server = Flask(__name__)
+
 """Стартовое, приветсвенное сообщение"""
 @bot.message_handler(commands=['start', 'help'])
 def handle_help_start(message):
@@ -124,4 +128,6 @@ def check_error_msg(message):
     bot.send_message(message.chat.id, "Вы не ввели никакой команды, пожалуйста, кликните на /help что бы посмотреть список комманд.")
 
 if __name__=='__main__':
-	bot.polling(none_stop=True)
+	server.debug = True
+	server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+	#bot.polling(none_stop=True)
