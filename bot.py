@@ -7,6 +7,7 @@ import os
 import telebot
 import config
 import gspread
+import logging
 from oauth2client.service_account import ServiceAccountCredentials
 
 class Spreadsheet():
@@ -76,8 +77,6 @@ sheet1=Spreadsheet()
 
 bot = telebot.TeleBot(config.token)
 
-server = Flask(__name__)
-
 """Стартовое, приветсвенное сообщение"""
 @bot.message_handler(commands=['start', 'help'])
 def handle_help_start(message):
@@ -127,7 +126,22 @@ def get_full_name(message):
 def check_error_msg(message):
     bot.send_message(message.chat.id, "Вы не ввели никакой команды, пожалуйста, кликните на /help что бы посмотреть список комманд.")
 
-if __name__=='__main__':
-	server.debug = True
-	server.run(host="0.0.0.0", port=5000)
-	#bot.polling(none_stop=True)
+
+if "HEROKU" in list(os.environ.keys()):
+    logger = telebot.logger
+    telebot.logger.setLevel(logging.INFO)
+
+    server = Flask(__name__)
+    @server.route("/bot", methods=['POST'])
+    def getMessage():
+        bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+        return "!", 200
+    @server.route("/")
+    def webhook():
+        bot.remove_webhook()
+        bot.set_webhook(url="https://min-gallows.herokuapp.com/bot") # этот url нужно заменить на url вашего Хероку приложения
+        return "?", 200
+    server.run(host="0.0.0.0", port=os.environ.get('PORT', 80))
+else:
+	bot.remove_webhook()
+	bot.polling(none_stop=True)
