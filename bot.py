@@ -129,5 +129,5 @@ def check_error_msg(message):
 
 if __name__=='__main__':
 	server.debug = True
-	server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 8000)))
-	bot.polling(none_stop=True)
+	server.run(host="0.0.0.0", port=5000)
+	#bot.polling(none_stop=True)
