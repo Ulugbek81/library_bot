@@ -1,1 +1,1 @@
-web: python3 bot.py --log-fail -
+worker: python bot.py --log-fail -
