@@ -32,7 +32,7 @@ class Spreadsheet():
 				cnt=cnt+1
 				# "self.sheet.cell(row,2).value" вот таких строк нужно добавить сколько нужно
 				# и вместо 2 нужно писать номер столбцов которые должен будет видеть юзер
-				foundbook=foundbook+'\n'+bookname+' '+self.sheet.cell(row,2).value + ';'
+				foundbook=foundbook+'\n'+bookname+' '+self.sheet.cell(row,1).value + ';'
 		if cnt==1:
 		    return "Найдена только одна книга: "+foundbook
 		elif cnt!=0:
@@ -48,7 +48,7 @@ class Spreadsheet():
 			row=row+1
 			if data.lower() in auth_fullname.lower():
 				cnt=cnt+1
-				foundbook=foundbook+'\n'+self.sheet.cell(row,1).value+' '+auth_fullname + ';'
+				foundbook=foundbook+'\n'+self.sheet.cell(row,2).value+' '+auth_fullname + ';'
 		if cnt==1:
 		    return "Найдена только одна книга: "+foundbook
 		elif cnt!=0:
