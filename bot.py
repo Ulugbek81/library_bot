@@ -139,7 +139,7 @@ if "HEROKU" in list(os.environ.keys()):
     @server.route("/")
     def webhook():
         bot.remove_webhook()
-        bot.set_webhook(url="https://lib-bot-v1-test.herokuapp.com/") # этот url нужно заменить на url вашего Хероку приложения
+        bot.set_webhook(url="https://konaevalibrarybot.herokuapp.com/") # этот url нужно заменить на url вашего Хероку приложения
         return "?", 200
     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 else:
