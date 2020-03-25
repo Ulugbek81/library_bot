@@ -32,7 +32,7 @@ class Spreadsheet():
 				cnt=cnt+1
 				# "self.sheet.cell(row,2).value" вот таких строк нужно добавить сколько нужно
 				# и вместо 2 нужно писать номер столбцов которые должен будет видеть юзер
-				foundbook=foundbook+'\n'+bookname+' '+self.sheet.cell(row,1).value +' '+self.sheet.cell(row,2).value +' '+self.sheet.cell(row,3).value +' '+self.sheet.cell(row,4).value +' '+self.sheet.cell(row,5).value +' '+self.sheet.cell(row,6).value +' '+self.sheet.cell(row,7).value +' '+self.sheet.cell(row,9).value +' '+self.sheet.cell(row,13).value +' '+self.sheet.cell(row,19).value + ';'
+				foundbook=foundbook+'\n'+bookname+' '+self.sheet.cell(row,1).value +' '+self.sheet.cell(row,2).value +' '+self.sheet.cell(row,3).value +' '+self.sheet.cell(row,4).value +' '+self.sheet.cell(row,5).value +' '+self.sheet.cell(row,6).value +' '+self.sheet.cell(row,7).value +' '+self.sheet.cell(row,9).value +' '+self.sheet.cell(row,13).value +' '+self.sheet.cell(row,19).value + ';'+'\n\n'
 		if cnt==1:
 		    return "Найдена только одна книга: "+foundbook
 		elif cnt!=0:
