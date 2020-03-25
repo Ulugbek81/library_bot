@@ -26,7 +26,7 @@ class Spreadsheet():
 		row=0
 		foundbook=''
 		"""col_values(1) вместо 1 нужно написать номер столбца где будут храниться названия книг"""
-		for bookname in self.sheet.col_values(1):  
+		for bookname in self.sheet.col_values(2):  
 			row=row+1
 			if data.lower() in bookname.lower():
 				cnt=cnt+1
@@ -44,7 +44,7 @@ class Spreadsheet():
 		cnt=0
 		row=0
 		foundbook=''
-		for auth_fullname in self.sheet.col_values(2):
+		for auth_fullname in self.sheet.col_values(1):
 			row=row+1
 			if data.lower() in auth_fullname.lower():
 				cnt=cnt+1
